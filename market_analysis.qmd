@@ -1,0 +1,31 @@
+---
+title: "Market Analysis"
+author: "Greg Macfarlane"
+date: "YYYY-MM-DD"
+format: html
+---
+
+```{r source}
+library(tidyverse)
+source("R/process_pairs.R")
+```
+
+# Introduction
+
+This document provides an analysis of the market data.
+
+# Data download
+
+There is a function to download all of the DB1B market and coupon data.
+
+```{r load_data}
+
+```
+
+```{r analysis}
+# Apply the process for all airport pairs using purrr::pmap_dfr().
+CA_airports_pass_flow_q4_2023 <- airport_pairs %>%
+    pmap_dfr(~ process_airport_pair(..1, ..2)) %>%
+    arrange(desc(total_passengers))
+
+```
