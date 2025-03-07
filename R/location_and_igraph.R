@@ -1,5 +1,4 @@
 #Assigning lat and long to try and do igraph
-
 library(igraph)
 library(ggplot2)
 library(ggmap)
