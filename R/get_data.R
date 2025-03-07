@@ -14,8 +14,10 @@ get_db1bfiles <- function(years = 2023, quarters = 1:4) {
             coupon_url <- paste0(root_url, year, "_Q", q, ".zip")
             coupon_file <- paste0("data/coupon_", year, "_Q", q, ".zip")
 
-            download_data(market_url, market_file)
-            download_data(coupon_url, coupon_file)
+            message("Downloading data for year ", year, " quarter ", q)
+            message("Downloading market data from url ", market_url)
+            #download_data(market_url, market_file)
+            #download_data(coupon_url, coupon_file)
         }
     }
     
