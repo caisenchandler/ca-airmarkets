@@ -1,37 +1,31 @@
-library(curl)
+# Load required libraries
+library(skynet)  # For DB1B data processing
+library(httr)    # For downloading files
+library(readr)   # For reading CSV files
 
-get_db1bfiles <- function(years = 2023, quarters = 1:4) {
-    
-    # Define the root URL for the DB1B data
-    root_url <- "https://transtats.bts.gov/OT_Delay/OT_Delay/"
-    # Define the destination file path
-    
-    # loop through years
-    for(year in years){
-        for(q in quarters){
-            market_url <- paste0(root_url, year, "_Q", q, ".zip")
-            market_file <- paste0("data/market_", year, "_Q", q, ".zip")
-            coupon_url <- paste0(root_url, year, "_Q", q, ".zip")
-            coupon_file <- paste0("data/coupon_", year, "_Q", q, ".zip")
+# Set working directory (adjust path as needed)
+setwd("/Users/caisenchandler/Desktop/Transpo_Job/db1b_data/2024")
 
-            message("Downloading data for year ", year, " quarter ", q)
-            message("Downloading market data from url ", market_url)
-            #download_data(market_url, market_file)
-            #download_data(coupon_url, coupon_file)
-        }
-    }
-    
-    message("DB1B data downloaded and unzipped successfully.")
-}
+# Define download parameters
+url <- "https://transtats.bts.gov/PREZIP/Origin_and_Destination_Survey_DB1BMarket_2024_1.zip"
+destfile <- "DB1B_Market_2024_Q1.zip"
 
-download_data <- function(url, destfile) {
-    if (missing(url) || missing(destfile)) {
-        stop("Both 'url' and 'destfile' must be provided.")
-    }
-    
-    curl_download(url, destfile)
-    message("Data downloaded successfully to ", destfile)
-}
+# Download the ZIP file from the specified URL
+GET(url, 
+    write_disk(destfile, overwrite = TRUE), 
+    config = config(ssl_verifypeer = FALSE))
 
-# Example usage:
-# download_data("http://example.com/data.csv", "data.csv")
+# Download and extract DB1B data using skynet function
+download_db1b(y = 2024, q = 1)
+
+# Unzip the downloaded file to a specified directory
+unzip(destfile, exdir = "unzipped_data_1")
+
+# Define path to extracted CSV file
+csv_file <- "unzipped_data_1/Origin_and_Destination_Survey_DB1BMarket_2024_1.csv"
+
+# Read the CSV file into a dataframe (adjust path if necessary)
+df <- read_csv(csv_file)
+
+# Display the first few rows of the dataframe
+head(df)
