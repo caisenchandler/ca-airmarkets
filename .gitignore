@@ -1,3 +1,7 @@
 data/*.csv
 data/*.zip
 .Rproj.user
+.RData
+.nhts_data
+nhts_data
+db1b_data
