@@ -1,7 +1,10 @@
-data/*.csv
-data/*.zip
 .Rproj.user
+.RDataa
+nhts_data/
+db1b_data/
 .RData
-.nhts_data
-nhts_data
-db1b_data
+nhts_data/2022_Passenger_OD_Annual_Data.csv
+db1b_data/2024_q1.csv
+db1b_data/2024_q2.csv
+db1b_data/2024_q3.csv
+db1b_data/2024_q4.csv

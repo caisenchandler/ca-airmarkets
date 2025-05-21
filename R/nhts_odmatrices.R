@@ -1,3 +1,8 @@
+## This is a script that analyzes the NHTS NextGen Annual Passenger data. To
+## use this script, first go to https://nhts.ornl.gov/od/downloads and download
+## the data. Put the csv file in a folder named nhts_data and name it 
+## 2022_Passenger_OD_Annual_Data.csv
+
 # Load required packages
 library(dplyr)
 library(tidyr)
