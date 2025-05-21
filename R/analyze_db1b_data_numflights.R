@@ -1,10 +1,11 @@
 # 1. Load libraries
 library(dplyr)
 library(readr)    # or data.table for big files
+setwd("/Users/caisenchandler/Desktop/Transpo_Job")
 
 # 2. Read in the DB1B dataset
 # Replace with your actual file path
-db1b_data <- read_csv("db1b_data/2024_q4.csv")
+db1b_data <- read_csv("db1b_data/2024/2024_q4.csv")
 
 # 3. Inspect the column names
 head(db1b_data)
